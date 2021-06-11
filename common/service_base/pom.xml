@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service_base</artifactId>
+    <!--存放所有service的公共资源，公共配置-->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
