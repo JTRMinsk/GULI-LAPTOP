@@ -4,6 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>service</module>
+		<module>common</module>
+		<module>service_base</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -13,7 +15,7 @@
 	</parent>
 	<groupId>org.salim</groupId>
 	<artifactId>guli-parent</artifactId>
-	<packaging>pom</packaging>
+	<packaging>pom</packaging><!--添加子module之后产生-->
 	<version>0.0.1-SNAPSHOT</version>
 	<name>guli-parent</name>
 	<description>Demo project for Spring Boot</description>
@@ -56,7 +58,7 @@
 <!--		</dependency>-->
 <!--	</dependencies>-->
 	<!--这里为什么要舍弃dependency而使用dependencyManagement，有什么区别-->
-	<dependencyManagement>
+	<dependencyManagement><!--dependencyManagement只是添加依赖的版本，不实际引入依赖-->
 		<dependencies>
 			<!--Spring Cloud-->
 			<dependency>
@@ -79,6 +81,11 @@
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
 				<version>${mybatis-plus.version}</version>
 			</dependency>
 

@@ -13,7 +13,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>service-edu</module>
-    </modules><!--这个什么意思？--><!--pom仅仅为了聚合工程，传递依赖-->
+    </modules>
+    <!---->
+
+    <!--这个什么意思？--><!--pom仅仅为了聚合工程，传递依赖-->
 <!--    项目的打包类型：pom、jar、war-->
 
 <!--    packing默认是jar类型，-->

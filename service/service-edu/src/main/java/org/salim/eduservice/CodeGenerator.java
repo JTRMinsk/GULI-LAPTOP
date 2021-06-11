@@ -1,16 +1,21 @@
 package org.salim.eduservice;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
-import jdk.nashorn.internal.objects.Global;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
 public class CodeGenerator {
-
+    //本次使用业务分库，针对大型项目，小项目不考虑
+    //生成service层代码
     @Test
-    public static void main1() {
+    public void main1() {//为什么这里不能是static？
         // 1、创建代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -32,5 +37,38 @@ public class CodeGenerator {
         gc.setDateType(DateType.ONLY_DATE);//定义生成的实体类中日期类型
         gc.setSwagger2(true);//开启Swagger2模式 swagger是什么？
 
+        mpg.setGlobalConfig(gc);
+        // 3、数据源配置
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl("jdbc:mysql://81.68.160.36:3306/GULI?serverTimezone=GMT%2B8");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setUsername("root");
+        dsc.setPassword("JFK181235");
+        dsc.setDbType(DbType.MYSQL);
+        mpg.setDataSource(dsc);
+
+        // 4、包配置
+        PackageConfig pc = new PackageConfig();
+        pc.setModuleName("serviceedu"); //模块名
+        pc.setParent("org.salim");
+        pc.setController("controller");
+        pc.setEntity("entity");
+        pc.setService("service");
+        pc.setMapper("mapper");
+        mpg.setPackageInfo(pc);
+
+        // 5、策略配置
+        StrategyConfig strategy = new StrategyConfig();
+        strategy.setInclude("edu_teacher");
+        strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
+        strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体的命名策略
+        strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true) setter链式操作
+        strategy.setRestControllerStyle(true); //restful api风格控制器
+        strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符
+        mpg.setStrategy(strategy);
+
+        // 6、执行
+        mpg.execute();
     }
 }
