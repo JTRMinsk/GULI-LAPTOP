@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author Salim
- * @since 2021-07-04
+ * @since 2021-07-05
  */
 public interface ChapterMapper extends BaseMapper<Chapter> {
 

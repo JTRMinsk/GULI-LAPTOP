@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author Salim
- * @since 2021-07-04
+ * @since 2021-07-05
  */
 @RestController
 @RequestMapping("/edu/comment")

@@ -2,11 +2,8 @@ package org.salim.service.edu.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import org.salim.service.base.model.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,31 +16,19 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Salim
- * @since 2021-07-04
+ * @since 2021-07-05
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("edu_course_description")
 @ApiModel(value="CourseDescription对象", description="课程简介")
-public class CourseDescription implements Serializable {
+public class CourseDescription extends BaseEntity {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "课程ID")
-      @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private String id;
-
     @ApiModelProperty(value = "课程简介")
     private String description;
-
-    @ApiModelProperty(value = "创建时间")
-      @TableField(fill = FieldFill.INSERT)
-    private Date gmtCreate;
-
-    @ApiModelProperty(value = "更新时间")
-      @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date gmtModified;
 
 
 }

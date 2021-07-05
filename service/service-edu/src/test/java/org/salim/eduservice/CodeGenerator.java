@@ -90,6 +90,13 @@ public class CodeGenerator {
         strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符"-"，
         mpg.setStrategy(strategy);
 
+        //设置所有entity的父类
+        strategy.setSuperEntityClass("org.salim.service.base.model.BaseEntity");
+        //这个类是在service_base里面的，为什么在service_edu里面也能找到？？
+        //配置父类中的公共字段
+        strategy.setSuperEntityColumns("id", "gmt_create", "gmt_modified");
+        //这里输入的是表中字段，如何在已经创建baseentity的情况下对应到
+
 // 6、执行
         mpg.execute();
     }
